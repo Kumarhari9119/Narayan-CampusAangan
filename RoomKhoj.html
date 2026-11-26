@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Narayan CampusAangan - Find Your Space</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<header>
+  <nav class="nav">
+    <div class="logo">Narayan<span> CampusAangan</span></div>
+
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#rooms">Find Rooms</a>
+      <a href="#post">Post a Room</a>
+      <a href="#how">How It Works</a>
+    </div>
+
+    <a href="#post">
+      <button class="btn primary">List Your Room +</button>
+    </a>
+  </nav>
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+  <h1>Find a Place to <span>Call Home.</span></h1>
+
+  <p>
+    Discover affordable rooms, connect with property owners
+    and find your perfect accommodation without the hassle
+    of middlemen.
+  </p>
+
+  <div class="search-box">
+
+    <div class="field">
+      <label>LOCATION / AREA</label>
+      <input id="searchArea" placeholder="Enter area or landmark">
+    </div>
+
+    <div class="field">
+      <label>MAXIMUM RENT</label>
+      <select id="searchRent">
+        <option value="">Any Budget</option>
+        <option value="3000">Up to ₹3,000</option>
+        <option value="5000">Up to ₹5,000</option>
+        <option value="8000">Up to ₹8,000</option>
+        <option value="10000">Up to ₹10,000</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>ROOM TYPE</label>
+      <select id="searchType">
+        <option value="">Any Type</option>
+        <option value="Single">Single Room</option>
+        <option value="Double">Double Room</option>
+        <option value="Shared">Shared Room</option>
+      </select>
+    </div>
+
+    <button class="btn primary search-btn"
+      onclick="searchRooms()">Search Rooms</button>
+
+  </div>
+</section>
+
+<!-- ROOM LISTINGS -->
+
+<main class="container" id="rooms">
+
+  <div class="section-heading">
+    <div>
+      <h2>Available Rooms</h2>
+      <p>Explore accommodation near your preferred location.</p>
+    </div>
+
+    <button class="btn outline" onclick="resetSearch()">
+      Reset Filters
+    </button>
+  </div>
+
+  <div class="room-grid" id="roomGrid"></div>
+
+</main>
+
+<!-- POST ROOM -->
+
+<section class="post-section" id="post">
+
+  <div class="post-inner">
+
+    <h2>Have a Room to Rent?</h2>
+
+    <p>
+      List your available room and connect directly
+      with students and working professionals.
+    </p>
+
+    <form class="post-form" id="postForm">
+
+      <div class="field">
+        <label>ROOM TITLE *</label>
+        <input name="title" placeholder="e.g. Spacious Student Room"
+          required>
+      </div>
+
+      <div class="field">
+        <label>OWNER NAME *</label>
+        <input name="owner" placeholder="Your name" required>
+      </div>
+
+      <div class="field">
+        <label>AREA / LOCALITY *</label>
+        <input name="area" placeholder="Enter locality" required>
+      </div>
+
+      <div class="field">
+        <label>MONTHLY RENT (₹) *</label>
+        <input name="rent" type="number" min="1"
+          placeholder="5000" required>
+      </div>
+
+      <div class="field">
+        <label>ROOM TYPE *</label>
+        <select name="type" required>
+          <option value="">Select</option>
+          <option>Single</option>
+          <option>Double</option>
+          <option>Shared</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>SUITABLE FOR *</label>
+        <select name="suitable" required>
+          <option value="">Select</option>
+          <option>Students</option>
+          <option>Staff</option>
+          <option>Family</option>
+          <option>Anyone</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>FURNISHING</label>
+        <select name="furnishing">
+          <option>Unfurnished</option>
+          <option>Semi-furnished</option>
+          <option>Fully furnished</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>SECURITY DEPOSIT (₹)</label>
+        <input name="deposit" type="number" min="0"
+          placeholder="5000">
+      </div>
+
+      <div class="field full">
+        <label>DESCRIPTION</label>
+        <textarea name="description"
+          placeholder="Mention facilities, bathroom, water, electricity, nearby college etc."></textarea>
+      </div>
+
+      <div class="field full">
+        <label>CONTACT NUMBER *</label>
+        <input name="phone" type="tel"
+          pattern="[0-9]{10}"
+          maxlength="10"
+          placeholder="10-digit mobile number" required>
+      </div>
+
+      <div class="full">
+        <button class="btn primary" type="submit">
+          Submit Room Listing
+        </button>
+      </div>
+
+      <p class="form-message" id="formMessage"></p>
+
+    </form>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+
+<section class="container" id="how">
+
+  <div class="section-heading">
+    <div>
+      <h2>How Narayan CampusAangan Works</h2>
+      <p>Finding your next room is simple.</p>
+    </div>
+  </div>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-icon">🔎</div>
+      <h3>1. Search</h3>
+      <p>Enter your preferred area, budget and room type.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-icon">🏠</div>
+      <h3>2. Explore</h3>
+      <p>Compare rooms, rental prices and available facilities.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-icon">🤝</div>
+      <h3>3. Connect</h3>
+      <p>Contact the owner and arrange a room visit.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- DETAILS MODAL -->
+
+<div class="modal" id="roomModal">
+  <div class="modal-box">
+    <button class="close"
+      onclick="closeModal()">×</button>
+
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="logo" style="color:white">
+    Narayan<span> CampusAangan</span>
+  </div>
+
+  <p>
+    Find your space. Make yourself at home.<br>
+    A platform connecting room seekers and property owners.
+  </p>
+
+  <p>© 2026 Narayan CampusAangan.harinandan kumar  All rights reserved.</p>
+</footer>
+
+<script>
+
+// SAMPLE ROOM DATA
+
+const sampleRooms = [
+  {
+    id: 1,
+    title: "Student Friendly Single Room",
+    area: "Faizalganj",
+    rent: 3000,
+    type: "Single",
+    suitable: "Students",
+    furnishing: "Semi-furnished",
+    deposit: 3000,
+    description: "A clean room suitable for students. Water and electricity available.",
+    owner: "Demo Owner",
+    phone: "0000000000"
+  },
+  {
+    id: 2,
+    title: "Spacious Double Room",
+    area: "Beda Nahar",
+    rent: 5000,
+    type: "Double",
+    suitable: "Staff",
+    furnishing: "Fully furnished",
+    deposit: 5000,
+    description: "Spacious accommodation with basic furniture.",
+    owner: "Demo Owner",
+    phone: "0000000000"
+  },
+  {
+    id: 3,
+    title: "Affordable Shared Room",
+    area: "Mahaveer Sthan",
+    rent: 2000,
+    type: "Shared",
+    suitable: "Students",
+    furnishing: "Unfurnished",
+    deposit: 1000,
+    description: "Budget friendly shared accommodation.",
+    owner: "Demo Owner",
+    phone: "0000000000"
+  }
+];
+
+// LOAD SAVED ROOMS
+
+function loadRooms() {
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem("Narayan CampusAangan_rooms") || "[]"
+    );
+    return Array.isArray(saved) ? saved : [];
+  } catch {
+    return [];
+  }
+}
+
+let rooms = [...sampleRooms, ...loadRooms()];
+
+// DISPLAY ROOMS
+
+function displayRooms(list) {
+
+  const grid = document.getElementById("roomGrid");
+
+  if (list.length === 0) {
+    grid.innerHTML = `
+      <div class="empty">
+        <h3>No rooms found!</h3>
+        <p>Try changing your search filters.</p>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = list.map(room => `
+    <article class="room-card">
+
+      <div class="room-image">
+        <span class="tag">${escapeHTML(room.suitable)}</span>
+        🏠
+      </div>
+
+      <div class="room-info">
+
+        <h3>${escapeHTML(room.title)}</h3>
+
+        <div class="location">
+          📍 ${escapeHTML(room.area)}
+        </div>
+
+        <div class="price">
+          ₹${Number(room.rent).toLocaleString("en-IN")}
+          <small>/ month</small>
+        </div>
+
+        <div class="details">
+          <span>${escapeHTML(room.type)} Room</span>
+          <span>${escapeHTML(room.furnishing || "Unfurnished")}</span>
+        </div>
+
+        <div class="card-actions">
+          <button class="btn outline"
+            onclick="showDetails('${room.id}')">
+            View Details
+          </button>
+
+          <button class="btn primary"
+            onclick="contactOwner('${room.id}')">
+            Contact
+          </button>
+        </div>
+
+      </div>
+    </article>
+  `).join("");
+}
+
+// BASIC HTML ESCAPING
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+// SEARCH FILTER
+
+function searchRooms() {
+
+  const area = document.getElementById("searchArea")
+    .value.trim().toLowerCase();
+
+  const rent = Number(
+    document.getElementById("searchRent").value
+  );
+
+  const type = document.getElementById("searchType").value;
+
+  const filtered = rooms.filter(room => {
+
+    const areaMatch =
+      !area || room.area.toLowerCase().includes(area);
+
+    const rentMatch =
+      !rent || Number(room.rent) <= rent;
+
+    const typeMatch =
+      !type || room.type === type;
+
+    return areaMatch && rentMatch && typeMatch;
+  });
+
+  displayRooms(filtered);
+
+  document.getElementById("rooms").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+// RESET SEARCH
+
+function resetSearch() {
+  document.getElementById("searchArea").value = "";
+  document.getElementById("searchRent").value = "";
+  document.getElementById("searchType").value = "";
+  displayRooms(rooms);
+}
+
+// POST NEW ROOM
+
+document.getElementById("postForm")
+  .addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    const room = {
+      id: "user_" + Date.now(),
+      title: formData.get("title").trim(),
+      owner: formData.get("owner").trim(),
+      area: formData.get("area").trim(),
+      rent: Number(formData.get("rent")),
+      type: formData.get("type"),
+      suitable: formData.get("suitable"),
+      furnishing: formData.get("furnishing"),
+      deposit: Number(formData.get("deposit") || 0),
+      description: formData.get("description").trim(),
+      phone: formData.get("phone").trim()
+    };
+
+    if (!Number.isFinite(room.rent) || room.rent <= 0) {
+      alert("Please enter a valid rent.");
+      return;
+    }
+
+    if (!/^[0-9]{10}$/.test(room.phone)) {
+      alert("Enter a valid 10-digit phone number.");
+      return;
+    }
+
+    const saved = loadRooms();
+    saved.unshift(room);
+
+    try {
+      localStorage.setItem(
+        "Narayan CampusAangan_rooms",
+        JSON.stringify(saved)
+      );
+    } catch {
+      alert("Unable to save listing in this browser.");
+      return;
+    }
+
+    rooms = [...sampleRooms, ...saved];
+
+    this.reset();
+
+    const message = document.getElementById("formMessage");
+    message.textContent =
+      "Your demo listing has been saved in this browser!";
+    message.style.display = "block";
+
+    displayRooms(rooms);
+
+    document.getElementById("rooms").scrollIntoView({
+      behavior: "smooth"
+    });
+  });
+
+// ROOM DETAILS
+
+function findRoom(id) {
+  return rooms.find(room => String(room.id) === String(id));
+}
+
+function showDetails(id) {
+
+  const room = findRoom(id);
+
+  if (!room) return;
+
+  document.getElementById("modalContent").innerHTML = `
+    <h2>${escapeHTML(room.title)}</h2>
+
+    <p>
+      📍 ${escapeHTML(room.area)}<br>
+      💰 Rent: ₹${Number(room.rent).toLocaleString("en-IN")} / month<br>
+      🏠 Type: ${escapeHTML(room.type)}<br>
+      👤 Suitable for: ${escapeHTML(room.suitable)}<br>
+      🛋️ ${escapeHTML(room.furnishing)}<br>
+      🔐 Deposit: ₹${Number(room.deposit).toLocaleString("en-IN")}
+    </p>
+
+    <p>${escapeHTML(room.description || "No description provided.")}</p>
+
+    <p>Owner: ${escapeHTML(room.owner)}</p>
+  `;
+
+  document.getElementById("roomModal").style.display = "flex";
+}
+
+// CONTACT OWNER
+
+function contactOwner(id) {
+
+  const room = findRoom(id);
+
+  if (!room) return;
+
+  if (room.phone === "0000000000") {
+    alert("This is a sample listing. Real owner contact will be available after publishing verified listings.");
+    return;
+  }
+
+  const choice = confirm(
+    "Contact " + room.owner + " by phone?"
+  );
+
+  if (choice) {
+    window.location.href = "tel:" + room.phone;
+  }
+}
+
+// CLOSE MODAL
+
+function closeModal() {
+  document.getElementById("roomModal").style.display = "none";
+}
+
+// INITIAL DISPLAY
+
+displayRooms(rooms);
+
+</script>
+
+</body>
+</html>

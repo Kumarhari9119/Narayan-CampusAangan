@@ -1,0 +1,1057 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoomKhoj - Find Your Space</title>
+
+<style>
+:root {
+  --green: #176b50;
+  --dark: #123e30;
+  --light: #eaf5ef;
+  --text: #202c27;
+  --muted: #718078;
+  --border: #e5ebe7;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f8faf9;
+  color: var(--text);
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* NAVIGATION */
+
+header {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 17px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 800;
+  color: var(--green);
+  white-space: nowrap;
+}
+
+.logo span {
+  color: #e99b38;
+}
+
+.nav-links {
+  display: flex;
+  gap: 23px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: var(--green);
+}
+
+.btn {
+  padding: 11px 18px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.primary {
+  background: var(--green);
+  color: white;
+}
+
+.primary:hover {
+  background: var(--dark);
+}
+
+.outline {
+  background: white;
+  color: var(--green);
+  border: 1px solid var(--green);
+}
+
+/* HERO */
+
+.hero {
+  background: linear-gradient(120deg, #eaf5ef, #f7f8ed);
+  padding: 65px 20px 55px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.2;
+  color: var(--dark);
+  max-width: 750px;
+  margin: 0 auto 15px;
+}
+
+.hero h1 span {
+  color: var(--green);
+}
+
+.hero p {
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: auto;
+}
+
+.search-box {
+  background: white;
+  max-width: 950px;
+  margin: 32px auto 0;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr auto;
+  gap: 12px;
+  border-radius: 13px;
+  box-shadow: 0 8px 30px #193c2812;
+}
+
+.field {
+  text-align: left;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 7px;
+  color: var(--muted);
+}
+
+.field input, .field select {
+  width: 100%;
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 7px;
+  outline: none;
+  background: white;
+  min-width: 0;
+}
+
+.field input:focus, .field select:focus {
+  border-color: var(--green);
+}
+
+.search-btn {
+  align-self: end;
+  height: 43px;
+  padding: 0 24px;
+}
+
+/* MAIN */
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 45px 22px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 23px;
+}
+
+.section-heading h2 {
+  font-size: 26px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  margin-top: 7px;
+  font-size: 14px;
+}
+
+.room-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.room-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+.room-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px #0000000c;
+}
+
+.room-image {
+  height: 195px;
+  background: linear-gradient(135deg, #d7eadd, #a9cdb9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  position: relative;
+}
+
+.room-image .tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: white;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: bold;
+  padding: 7px 10px;
+  border-radius: 5px;
+}
+
+.room-info {
+  padding: 17px;
+}
+
+.room-info h3 {
+  font-size: 18px;
+  margin-bottom: 9px;
+}
+
+.location {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 13px;
+}
+
+.price {
+  font-size: 23px;
+  color: var(--green);
+  font-weight: 800;
+}
+
+.price small {
+  font-size: 12px;
+  font-weight: normal;
+  color: var(--muted);
+}
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.details span {
+  background: #f0f5f2;
+  padding: 7px 9px;
+  font-size: 11px;
+  border-radius: 5px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 9px;
+}
+
+.card-actions button {
+  flex: 1;
+  font-size: 12px;
+  padding: 10px 5px;
+}
+
+.empty {
+  text-align: center;
+  padding: 50px 10px;
+  color: var(--muted);
+  grid-column: 1 / -1;
+}
+
+/* POST ROOM */
+
+.post-section {
+  background: var(--light);
+  padding: 50px 20px;
+}
+
+.post-inner {
+  max-width: 800px;
+  margin: auto;
+}
+
+.post-inner h2 {
+  font-size: 27px;
+  margin-bottom: 9px;
+}
+
+.post-inner > p {
+  color: var(--muted);
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.post-form {
+  background: white;
+  padding: 25px;
+  border-radius: 13px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 17px;
+  border: 1px solid var(--border);
+}
+
+.post-form .field {
+  margin-bottom: 0;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.post-form textarea {
+  resize: vertical;
+  min-height: 85px;
+}
+
+.form-message {
+  grid-column: 1 / -1;
+  color: var(--green);
+  font-size: 14px;
+  display: none;
+}
+
+/* HOW IT WORKS */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.step {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 25px;
+  border-radius: 12px;
+}
+
+.step-icon {
+  font-size: 30px;
+  margin-bottom: 14px;
+}
+
+.step h3 {
+  margin-bottom: 9px;
+}
+
+.step p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* FOOTER */
+
+footer {
+  background: #123e30;
+  color: white;
+  padding: 35px 22px;
+  text-align: center;
+}
+
+footer p {
+  font-size: 13px;
+  color: #c5d9ce;
+  margin-top: 12px;
+  line-height: 1.7;
+}
+
+/* MODAL */
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #0009;
+  z-index: 30;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background: white;
+  padding: 25px;
+  border-radius: 13px;
+  max-width: 420px;
+  width: 100%;
+}
+
+.modal-box h2 {
+  margin-bottom: 12px;
+}
+
+.modal-box p {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+.close {
+  float: right;
+  border: none;
+  background: none;
+  font-size: 23px;
+}
+
+/* MOBILE */
+
+@media(max-width: 800px) {
+  .nav-links {
+    display: none;
+  }
+
+  .search-box {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .room-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 550px) {
+  .nav {
+    padding: 14px;
+  }
+
+  .logo {
+    font-size: 21px;
+  }
+
+  .hero {
+    padding: 45px 15px;
+  }
+
+  .search-box {
+    grid-template-columns: 1fr;
+    padding: 13px;
+  }
+
+  .search-btn {
+    width: 100%;
+  }
+
+  .container {
+    padding: 35px 15px;
+  }
+
+  .room-grid, .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading h2 {
+    font-size: 21px;
+  }
+
+  .post-form {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .full {
+    grid-column: auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<header>
+  <nav class="nav">
+    <div class="logo">Room<span>Khoj</span></div>
+
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#rooms">Find Rooms</a>
+      <a href="#post">Post a Room</a>
+      <a href="#how">How It Works</a>
+    </div>
+
+    <a href="#post">
+      <button class="btn primary">List Your Room +</button>
+    </a>
+  </nav>
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+  <h1>Find a Place to <span>Call Home.</span></h1>
+
+  <p>
+    Discover affordable rooms, connect with property owners
+    and find your perfect accommodation without the hassle
+    of middlemen.
+  </p>
+
+  <div class="search-box">
+
+    <div class="field">
+      <label>LOCATION / AREA</label>
+      <input id="searchArea" placeholder="Enter area or landmark">
+    </div>
+
+    <div class="field">
+      <label>MAXIMUM RENT</label>
+      <select id="searchRent">
+        <option value="">Any Budget</option>
+        <option value="3000">Up to ₹3,000</option>
+        <option value="5000">Up to ₹5,000</option>
+        <option value="8000">Up to ₹8,000</option>
+        <option value="10000">Up to ₹10,000</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>ROOM TYPE</label>
+      <select id="searchType">
+        <option value="">Any Type</option>
+        <option value="Single">Single Room</option>
+        <option value="Double">Double Room</option>
+        <option value="Shared">Shared Room</option>
+      </select>
+    </div>
+
+    <button class="btn primary search-btn"
+      onclick="searchRooms()">Search Rooms</button>
+
+  </div>
+</section>
+
+<!-- ROOM LISTINGS -->
+
+<main class="container" id="rooms">
+
+  <div class="section-heading">
+    <div>
+      <h2>Available Rooms</h2>
+      <p>Explore accommodation near your preferred location.</p>
+    </div>
+
+    <button class="btn outline" onclick="resetSearch()">
+      Reset Filters
+    </button>
+  </div>
+
+  <div class="room-grid" id="roomGrid"></div>
+
+</main>
+
+<!-- POST ROOM -->
+
+<section class="post-section" id="post">
+
+  <div class="post-inner">
+
+    <h2>Have a Room to Rent?</h2>
+
+    <p>
+      List your available room and connect directly
+      with students and working professionals.
+    </p>
+
+    <form class="post-form" id="postForm">
+
+      <div class="field">
+        <label>ROOM TITLE *</label>
+        <input name="title" placeholder="e.g. Spacious Student Room"
+          required>
+      </div>
+
+      <div class="field">
+        <label>OWNER NAME *</label>
+        <input name="owner" placeholder="Your name" required>
+      </div>
+
+      <div class="field">
+        <label>AREA / LOCALITY *</label>
+        <input name="area" placeholder="Enter locality" required>
+      </div>
+
+      <div class="field">
+        <label>MONTHLY RENT (₹) *</label>
+        <input name="rent" type="number" min="1"
+          placeholder="5000" required>
+      </div>
+
+      <div class="field">
+        <label>ROOM TYPE *</label>
+        <select name="type" required>
+          <option value="">Select</option>
+          <option>Single</option>
+          <option>Double</option>
+          <option>Shared</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>SUITABLE FOR *</label>
+        <select name="suitable" required>
+          <option value="">Select</option>
+          <option>Students</option>
+          <option>Staff</option>
+          <option>Family</option>
+          <option>Anyone</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>FURNISHING</label>
+        <select name="furnishing">
+          <option>Unfurnished</option>
+          <option>Semi-furnished</option>
+          <option>Fully furnished</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>SECURITY DEPOSIT (₹)</label>
+        <input name="deposit" type="number" min="0"
+          placeholder="5000">
+      </div>
+
+      <div class="field full">
+        <label>DESCRIPTION</label>
+        <textarea name="description"
+          placeholder="Mention facilities, bathroom, water, electricity, nearby college etc."></textarea>
+      </div>
+
+      <div class="field full">
+        <label>CONTACT NUMBER *</label>
+        <input name="phone" type="tel"
+          pattern="[0-9]{10}"
+          maxlength="10"
+          placeholder="10-digit mobile number" required>
+      </div>
+
+      <div class="full">
+        <button class="btn primary" type="submit">
+          Submit Room Listing
+        </button>
+      </div>
+
+      <p class="form-message" id="formMessage"></p>
+
+    </form>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+
+<section class="container" id="how">
+
+  <div class="section-heading">
+    <div>
+      <h2>How RoomKhoj Works</h2>
+      <p>Finding your next room is simple.</p>
+    </div>
+  </div>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-icon">🔎</div>
+      <h3>1. Search</h3>
+      <p>Enter your preferred area, budget and room type.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-icon">🏠</div>
+      <h3>2. Explore</h3>
+      <p>Compare rooms, rental prices and available facilities.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-icon">🤝</div>
+      <h3>3. Connect</h3>
+      <p>Contact the owner and arrange a room visit.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- DETAILS MODAL -->
+
+<div class="modal" id="roomModal">
+  <div class="modal-box">
+    <button class="close"
+      onclick="closeModal()">×</button>
+
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="logo" style="color:white">
+    Room<span>Khoj</span>
+  </div>
+
+  <p>
+    Find your space. Make yourself at home.<br>
+    A platform connecting room seekers and property owners.
+  </p>
+
+  <p>© 2026 RoomKhoj. All rights reserved.</p>
+</footer>
+
+<script>
+
+// SAMPLE ROOM DATA
+
+const sampleRooms = [
+  {
+    id: 1,
+    title: "Student Friendly Single Room",
+    area: "Faizalganj",
+    rent: 3000,
+    type: "Single",
+    suitable: "Students",
+    furnishing: "Semi-furnished",
+    deposit: 3000,
+    description: "A clean room suitable for students. Water and electricity available.",
+    owner: "Demo Owner",
+    phone: "0000000000"
+  },
+  {
+    id: 2,
+    title: "Spacious Double Room",
+    area: "Beda Nahar",
+    rent: 5000,
+    type: "Double",
+    suitable: "Staff",
+    furnishing: "Fully furnished",
+    deposit: 5000,
+    description: "Spacious accommodation with basic furniture.",
+    owner: "Demo Owner",
+    phone: "0000000000"
+  },
+  {
+    id: 3,
+    title: "Affordable Shared Room",
+    area: "Mahaveer Sthan",
+    rent: 2000,
+    type: "Shared",
+    suitable: "Students",
+    furnishing: "Unfurnished",
+    deposit: 1000,
+    description: "Budget friendly shared accommodation.",
+    owner: "Demo Owner",
+    phone: "0000000000"
+  }
+];
+
+// LOAD SAVED ROOMS
+
+function loadRooms() {
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem("roomkhoj_rooms") || "[]"
+    );
+    return Array.isArray(saved) ? saved : [];
+  } catch {
+    return [];
+  }
+}
+
+let rooms = [...sampleRooms, ...loadRooms()];
+
+// DISPLAY ROOMS
+
+function displayRooms(list) {
+
+  const grid = document.getElementById("roomGrid");
+
+  if (list.length === 0) {
+    grid.innerHTML = `
+      <div class="empty">
+        <h3>No rooms found!</h3>
+        <p>Try changing your search filters.</p>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = list.map(room => `
+    <article class="room-card">
+
+      <div class="room-image">
+        <span class="tag">${escapeHTML(room.suitable)}</span>
+        🏠
+      </div>
+
+      <div class="room-info">
+
+        <h3>${escapeHTML(room.title)}</h3>
+
+        <div class="location">
+          📍 ${escapeHTML(room.area)}
+        </div>
+
+        <div class="price">
+          ₹${Number(room.rent).toLocaleString("en-IN")}
+          <small>/ month</small>
+        </div>
+
+        <div class="details">
+          <span>${escapeHTML(room.type)} Room</span>
+          <span>${escapeHTML(room.furnishing || "Unfurnished")}</span>
+        </div>
+
+        <div class="card-actions">
+          <button class="btn outline"
+            onclick="showDetails('${room.id}')">
+            View Details
+          </button>
+
+          <button class="btn primary"
+            onclick="contactOwner('${room.id}')">
+            Contact
+          </button>
+        </div>
+
+      </div>
+    </article>
+  `).join("");
+}
+
+// BASIC HTML ESCAPING
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+// SEARCH FILTER
+
+function searchRooms() {
+
+  const area = document.getElementById("searchArea")
+    .value.trim().toLowerCase();
+
+  const rent = Number(
+    document.getElementById("searchRent").value
+  );
+
+  const type = document.getElementById("searchType").value;
+
+  const filtered = rooms.filter(room => {
+
+    const areaMatch =
+      !area || room.area.toLowerCase().includes(area);
+
+    const rentMatch =
+      !rent || Number(room.rent) <= rent;
+
+    const typeMatch =
+      !type || room.type === type;
+
+    return areaMatch && rentMatch && typeMatch;
+  });
+
+  displayRooms(filtered);
+
+  document.getElementById("rooms").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+// RESET SEARCH
+
+function resetSearch() {
+  document.getElementById("searchArea").value = "";
+  document.getElementById("searchRent").value = "";
+  document.getElementById("searchType").value = "";
+  displayRooms(rooms);
+}
+
+// POST NEW ROOM
+
+document.getElementById("postForm")
+  .addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    const room = {
+      id: "user_" + Date.now(),
+      title: formData.get("title").trim(),
+      owner: formData.get("owner").trim(),
+      area: formData.get("area").trim(),
+      rent: Number(formData.get("rent")),
+      type: formData.get("type"),
+      suitable: formData.get("suitable"),
+      furnishing: formData.get("furnishing"),
+      deposit: Number(formData.get("deposit") || 0),
+      description: formData.get("description").trim(),
+      phone: formData.get("phone").trim()
+    };
+
+    if (!Number.isFinite(room.rent) || room.rent <= 0) {
+      alert("Please enter a valid rent.");
+      return;
+    }
+
+    if (!/^[0-9]{10}$/.test(room.phone)) {
+      alert("Enter a valid 10-digit phone number.");
+      return;
+    }
+
+    const saved = loadRooms();
+    saved.unshift(room);
+
+    try {
+      localStorage.setItem(
+        "roomkhoj_rooms",
+        JSON.stringify(saved)
+      );
+    } catch {
+      alert("Unable to save listing in this browser.");
+      return;
+    }
+
+    rooms = [...sampleRooms, ...saved];
+
+    this.reset();
+
+    const message = document.getElementById("formMessage");
+    message.textContent =
+      "Your demo listing has been saved in this browser!";
+    message.style.display = "block";
+
+    displayRooms(rooms);
+
+    document.getElementById("rooms").scrollIntoView({
+      behavior: "smooth"
+    });
+  });
+
+// ROOM DETAILS
+
+function findRoom(id) {
+  return rooms.find(room => String(room.id) === String(id));
+}
+
+function showDetails(id) {
+
+  const room = findRoom(id);
+
+  if (!room) return;
+
+  document.getElementById("modalContent").innerHTML = `
+    <h2>${escapeHTML(room.title)}</h2>
+
+    <p>
+      📍 ${escapeHTML(room.area)}<br>
+      💰 Rent: ₹${Number(room.rent).toLocaleString("en-IN")} / month<br>
+      🏠 Type: ${escapeHTML(room.type)}<br>
+      👤 Suitable for: ${escapeHTML(room.suitable)}<br>
+      🛋️ ${escapeHTML(room.furnishing)}<br>
+      🔐 Deposit: ₹${Number(room.deposit).toLocaleString("en-IN")}
+    </p>
+
+    <p>${escapeHTML(room.description || "No description provided.")}</p>
+
+    <p>Owner: ${escapeHTML(room.owner)}</p>
+  `;
+
+  document.getElementById("roomModal").style.display = "flex";
+}
+
+// CONTACT OWNER
+
+function contactOwner(id) {
+
+  const room = findRoom(id);
+
+  if (!room) return;
+
+  if (room.phone === "0000000000") {
+    alert("This is a sample listing. Real owner contact will be available after publishing verified listings.");
+    return;
+  }
+
+  const choice = confirm(
+    "Contact " + room.owner + " by phone?"
+  );
+
+  if (choice) {
+    window.location.href = "tel:" + room.phone;
+  }
+}
+
+// CLOSE MODAL
+
+function closeModal() {
+  document.getElementById("roomModal").style.display = "none";
+}
+
+// INITIAL DISPLAY
+
+displayRooms(rooms);
+
+</script>
+
+</body>
+</html>
